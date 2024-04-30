@@ -1,6 +1,5 @@
 package com.school.schoConnectapp.security.impl;
 
-import org.hibernate.annotations.SecondaryRow;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;

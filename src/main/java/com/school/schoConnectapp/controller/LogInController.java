@@ -9,13 +9,13 @@ public class LogInController {
 
     @GetMapping(value = {"/","/login"})
     public ModelAndView logInController(){
-        ModelAndView modelAndView = new ModelAndView("login");
+        ModelAndView modelAndView = new ModelAndView("newLogin");
         return modelAndView;
     }
 
-    @GetMapping(value = "/home")
-    public String homeController(){
-        return "Hello World!!!";
-    }
+//    @GetMapping(value = "/home")
+//    public String homeController(){
+//        return "Hello World!!!";
+//    }
 
 }
