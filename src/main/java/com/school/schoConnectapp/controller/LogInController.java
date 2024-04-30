@@ -13,4 +13,9 @@ public class LogInController {
         return modelAndView;
     }
 
+    @GetMapping(value = "/home")
+    public String homeController(){
+        return "Hello World!!!";
+    }
+
 }
