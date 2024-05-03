@@ -28,6 +28,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
         User user = userService.getUserName(username);
         log.info("username: "+user.getUserName() + "password: "+user.getPassword());
+        user.getRoles().forEach(role -> log.info("role : {}",role.getRoleName()));
         if(user == null)
             throw new UsernameNotFoundException("User : "+username+ " not found");
 

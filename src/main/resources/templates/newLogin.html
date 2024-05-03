@@ -8,13 +8,13 @@
 <body>
 <div class="container">
   <h1>Please Login</h1>
-  <form>
-    <div class="form-control" method="post" action="/login">
-      <input type="text" required>
+  <form method="post" action="/login">
+    <div class="form-control">
+      <input type="text" id="username" name="username" required>
       <label>username</label>
     </div>
     <div class="form-control">
-      <input type="password" required>
+      <input type="password" id="password" name="password" required>
       <label>password</label>
     </div>
 

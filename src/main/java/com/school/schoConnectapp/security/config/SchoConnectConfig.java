@@ -41,7 +41,7 @@ public class SchoConnectConfig{
                 .requestMatchers("/","/login", "/css/**", "/js/**")
                 .permitAll()
                 .requestMatchers("/home")
-                .authenticated()
+                .authenticated().requestMatchers("/manage").hasAuthority("PROFESSOR")
                 .and().csrf().disable()
                 .formLogin().loginPage("/login")
                 .defaultSuccessUrl("/home").usernameParameter("username").passwordParameter("password");
