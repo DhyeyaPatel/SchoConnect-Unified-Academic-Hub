@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Log Out Page</title>
+  <link th:href="@{/css/logout.css}" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+  <h3>You are logged out!!!</h3>
+  <p>Thankyou for using our side</p>
+  <form action="#" th:action="@{/login}" method="get">
+    <button class="btn" type="submit">Login</button>
+  </form>
+<!--  <a th:href="/login"><button class="btn">Login</button></a>-->
+  <script type="text/javascript" th:src="@{/js/logout.js}"></script>
+</div>
+</body>
+</html>

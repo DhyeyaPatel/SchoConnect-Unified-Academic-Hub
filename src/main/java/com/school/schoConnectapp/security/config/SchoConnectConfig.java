@@ -7,7 +7,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -21,12 +20,6 @@ public class SchoConnectConfig{
     @Autowired
     private UserDetailsServiceImpl userDetailsServiceImpl;
 
-//    @Bean
-//    public AuthenticationManagerBuilder configure(AuthenticationManagerBuilder auth) throws Exception{
-//        auth.userDetailsService(userDetailsServiceImpl).passwordEncoder(passwordEncoder());
-//        return auth;
-//    }
-
     @Bean
     public AuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
@@ -39,12 +32,13 @@ public class SchoConnectConfig{
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests()
                 .requestMatchers("/","/login", "/css/**", "/js/**")
-                .permitAll()
-                .requestMatchers("/home")
-                .authenticated().requestMatchers("/manage").hasAuthority("PROFESSOR")
+                .permitAll().requestMatchers("/home").authenticated()
                 .and().csrf().disable()
                 .formLogin().loginPage("/login")
-                .defaultSuccessUrl("/home").usernameParameter("username").passwordParameter("password");
+                .defaultSuccessUrl("/home").usernameParameter("username").passwordParameter("password")
+                .and().logout().logoutUrl("/logout").logoutSuccessUrl("/goodbye").permitAll();
+
+                /*.and().exceptionHandling().accessDeniedPage("/accessDenied")*/
         return http.build();
     }
 
