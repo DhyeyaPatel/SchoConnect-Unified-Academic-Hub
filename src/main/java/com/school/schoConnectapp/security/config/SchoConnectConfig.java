@@ -31,10 +31,12 @@ public class SchoConnectConfig{
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests()
-                .requestMatchers("/","/login", "/css/**", "/js/**")
-                .permitAll().requestMatchers("/home").authenticated()
+                .requestMatchers("/", "/login", "/css/**", "/js/**").permitAll()
+                .requestMatchers("/home").authenticated()
+                .requestMatchers("/manage").hasAuthority("PROFESSOR")
+                .requestMatchers("/signup").permitAll()
                 .and().csrf().disable()
-                .formLogin().loginPage("/login")
+                .formLogin().loginPage("/login").permitAll()
                 .defaultSuccessUrl("/home").usernameParameter("username").passwordParameter("password")
                 .and().logout().logoutUrl("/logout").logoutSuccessUrl("/goodbye").permitAll();
 
