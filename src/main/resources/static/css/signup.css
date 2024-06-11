@@ -14,19 +14,21 @@ body{
     align-items: center;
     justify-content: center;
     min-height: 100vh;
-    overflow: hidden;
+    overflow: scroll;
 }
 
 .container{
     background-color:#fff;
     padding: 20px;
-    border-radius: 5px;
+    border-radius: 3px;
 }
 
 .container h1{
     text-align: center;
-    padding-bottom:10px;
-    margin-bottom: 15px;
+    padding-bottom:5px;
+    padding-top: 5px;
+    margin-top: 2px;
+    margin-bottom: 7px;
 }
 
 .container a{
@@ -61,7 +63,8 @@ body{
 }
 
 .text{
-    margin-top: 20px;
+    margin-top: 15px;
+    text-align: left;
 }
 
 .form-control input{
@@ -71,7 +74,7 @@ body{
     display: block;
     width: 100%;
     padding: 9px 0;
-    font-size: 18px;
+    font-size: 15px;
     color:#000;
 }
 
@@ -83,7 +86,7 @@ body{
 
 .form-control label {
     position: absolute;
-    top: 15px;
+    top: 10px;
     left: 0;
     pointer-events: none;
 }

@@ -1,45 +1,28 @@
 package com.school.schoConnectapp.entity;
 
-import jakarta.persistence.*;
-import lombok.ToString;
-
-import java.util.HashSet;
 import java.util.Set;
 
-@Entity
-@Table(name = "users")
-@ToString
-public class User {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    //@Column(name = "id")
-    private Long id;
-
-    @Column(name = "first_name")
+public class SignUpDto {
+    
     private String firstName;
-
-    @Column(name = "last_name")
+    
     private String lastName;
-
-    @Column(name = "email")
+    
     private String email;
-
-    @Column(name = "username")
+    
     private String userName;
-
-    @Column(name = "password")
+    
     private String password;
-
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private Set<Role> roles = new HashSet<>();
-
+    
+    private Set<Role> roles;
+    
+    private String roleName;
 
     public String getFirstName() {
         return firstName;
     }
 
-    public User setFirstName(String firstName) {
+    public SignUpDto setFirstName(String firstName) {
         this.firstName = firstName;
         return this;
     }
@@ -48,7 +31,7 @@ public class User {
         return lastName;
     }
 
-    public User setLastName(String lastName) {
+    public SignUpDto setLastName(String lastName) {
         this.lastName = lastName;
         return this;
     }
@@ -57,7 +40,7 @@ public class User {
         return email;
     }
 
-    public User setEmail(String email) {
+    public SignUpDto setEmail(String email) {
         this.email = email;
         return this;
     }
@@ -66,7 +49,7 @@ public class User {
         return userName;
     }
 
-    public User setUserName(String userName) {
+    public SignUpDto setUserName(String userName) {
         this.userName = userName;
         return this;
     }
@@ -75,7 +58,7 @@ public class User {
         return password;
     }
 
-    public User setPassword(String password) {
+    public SignUpDto setPassword(String password) {
         this.password = password;
         return this;
     }
@@ -84,8 +67,17 @@ public class User {
         return roles;
     }
 
-    public User setRoles(Set<Role> roles) {
+    public SignUpDto setRoles(Set<Role> roles) {
         this.roles = roles;
+        return this;
+    }
+
+    public String getRoleName() {
+        return roleName;
+    }
+
+    public SignUpDto setRoleName(String roleName) {
+        this.roleName = roleName;
         return this;
     }
 }

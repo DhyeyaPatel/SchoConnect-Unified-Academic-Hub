@@ -1,10 +1,12 @@
 package com.school.schoConnectapp.entity;
 
 import jakarta.persistence.*;
+import lombok.ToString;
 
 
 @Entity
 @Table(name = "roles")
+@ToString
 public class Role {
 
     @Id
@@ -36,5 +38,13 @@ public class Role {
 
     public void setRoleName(String roleName) {
         this.roleName = roleName;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

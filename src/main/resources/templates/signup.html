@@ -8,25 +8,47 @@
 <body>
 <div class="container">
     <h1> Please Sign up</h1>
-    <form>
+    <form method="post" action="/signup" th:object="${newUser}">
+
         <div class="form-control">
-            <input type="text" required>
-            <label>Full Name</label>
+            <input type="text" required th:field="*{firstName}">
+            <label>First Name</label>
         </div>
+
         <div class="form-control">
-            <input type="text" required>
+            <input type="text" required th:field="*{lastName}">
+            <label>Last Name</label>
+        </div>
+
+        <div class="form-control">
+            <input type="text" required th:field="*{email}">
             <label>Email</label>
         </div>
+
         <div class="form-control">
-            <input type="password" required>
+            <input type="text" required th:field="*{userName}">
+            <label>UserName</label>
+        </div>
+
+        <div class="form-control">
+            <input type="password" required th:field="*{password}">
             <label>Password</label>
         </div>
+
         <div class="form-control">
             <input type="password" required>
             <label>Confirm Password</label>
         </div>
+
+        <div class="form-control" label for="role">Choose your Role:</label>
+            <select name="role" id="role" th:field="*{roleName}">
+                <option value="STUDENT">STUDENT</option>
+                <option value="PROFESSOR">PROFESSOR</option>
+            </select>
+        </div>
+
         <button class="btn">Sign Up</button>
-        <p class="text">Already Have Account? <a th:href="@{/login}">Sign In</a></p>
+        <p class="text">Already Have Account? <a href="/login">Sign In</a></p>
     </form>
 </div>
 <script type="text/javascript" th:src="@{/js/signup.js}"></script>
