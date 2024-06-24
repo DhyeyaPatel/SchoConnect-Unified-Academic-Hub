@@ -5,34 +5,73 @@ services:
     image: postgres:13
     container_name: postgres
     environment:
-      POSTGRES_DB: keycloak
-      POSTGRES_USER: keycloak
+      POSTGRES_DB: university
+      POSTGRES_USER: postgres
       POSTGRES_PASSWORD: password
     volumes:
       - postgres_data:/var/lib/postgresql/data
     networks:
-      - keycloak-network
+      - mynetwork
 
   keycloak:
-    image: jboss/keycloak:15.0.2
+    image: quay.io/keycloak/keycloak:24.0.4
     container_name: keycloak
     environment:
       DB_VENDOR: POSTGRES
       DB_ADDR: postgres
       DB_DATABASE: keycloak
-      DB_USER: keycloak
+      DB_USER: postgres
       DB_PASSWORD: password
       KEYCLOAK_USER: admin
       KEYCLOAK_PASSWORD: admin
-    ports:
-      - "8080:8080"
     depends_on:
       - postgres
+    ports:
+      - "8080:8080"
     networks:
-      - keycloak-network
+      - mynetwork
+
+  app1:
+    image: myapp:latest
+    container_name: app1
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/university
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: password
+      KEYCLOAK_AUTH_SERVER_URL: http://keycloak:8080/auth
+      KEYCLOAK_REALM: myrealm
+      KEYCLOAK_RESOURCE: myclient
+      KEYCLOAK_CREDENTIALS_SECRET: mysecret
+    depends_on:
+      - postgres
+      - keycloak
+    ports:
+      - "8081:8080"
+    networks:
+      - mynetwork
+
+  app2:
+    image: myapp:latest
+    container_name: app2
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/university
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: password
+      KEYCLOAK_AUTH_SERVER_URL: http://keycloak:8080/auth
+      KEYCLOAK_REALM: myrealm
+      KEYCLOAK_RESOURCE: myclient
+      KEYCLOAK_CREDENTIALS_SECRET: mysecret
+    depends_on:
+      - postgres
+      - keycloak
+    ports:
+      - "8082:8080"
+    networks:
+      - mynetwork
 
 volumes:
   postgres_data:
 
 networks:
-  keycloak-network:
+  mynetwork:
+    driver: bridge
